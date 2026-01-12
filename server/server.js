@@ -10,13 +10,14 @@ app.use(express.json());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log("MongoDB error:", err));
+  .catch(err => console.log(err));
+
+app.use("/api/applications", require("./routes/applications"));
 
 app.get("/", (req, res) => {
-  res.send("Job Application Tracker API is running");
+  res.send("Job Application Tracker API running");
 });
 
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });
